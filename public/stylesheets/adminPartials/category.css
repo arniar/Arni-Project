@@ -1,0 +1,87 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+input[type="search"] {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    background-color: #1e1e1e;
+    color: white;
+    width: 300px;
+}
+
+.add-btn {
+    padding: 8px 16px;
+    background-color: #3700B3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    background-color: #2d2d2d;
+    font-weight: 500;
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.category-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+    border-radius: 6px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 20px 0;
+}
+
+.page-numbers {
+    display: flex;
+    gap: 10px;
+}
+
+.page-btn {
+    padding: 8px 12px;
+    border-radius: 6px;
+    background-color: #2d2d2d;
+    color: white;
+    cursor: pointer;
+}
+
+.page-btn.active {
+    background-color: #3700B3;
+}
