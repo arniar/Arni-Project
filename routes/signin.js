@@ -77,7 +77,7 @@ router.get('/auth/google/callback',
             return res.redirect('/signinOtp');
           }
     
-          delete req.session.username; // Fixed typo
+          delete req.session.username;
           delete req.session.phone;
           delete req.session.email;
 
@@ -99,6 +99,10 @@ router.get('/auth/facebook/callback',
         const user = await User.findOne({ email: req.session.email });
     console.log(user)
         if (user) {
+          delete req.session.username 
+          delete req.session.phone;
+          delete req.session.email;
+
         return res.redirect('/landing');
         }
         try {
@@ -113,7 +117,7 @@ router.get('/auth/facebook/callback',
             return res.redirect('/signinOtp');
           }
     
-          delete req.session.name; // Fixed typo
+          delete req.session.username 
           delete req.session.phone;
           delete req.session.email;
 
