@@ -3,12 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 
 var app = express();
+const mongoURI = 'mongodb://localhost:27017/Arni'; // or use MongoDB Atlas URI
+
+// Connect to MongoDB using Mongoose
+mongoose.connect(mongoURI)
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch(err => console.log('MongoDB connection error: ', err));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
