@@ -20,26 +20,38 @@ editProduct.forEach((product)=>{
 closeBtnEdit.addEventListener('click',()=>{
     editForm.classList.add('make-visible');
 })
-document.addEventListener('DOMContentLoaded',async ()=>{
-    await fetch('/admin/admin-products/table', {
-        method: 'POST',
-    })
-    .then(response => {
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('/admin/admin-products/table', {
+            method: 'POST',
+        });
+       console.log(response);
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error(`Network response was not ok: ${response.statusText}`);
         }
-        return response.text();
-    })
-    .then(html => {
+
+        const html = await response.text();
         console.log('Fetched HTML:', html);
+        const tbody = document.getElementById('tbody');
         if (tbody) {
             tbody.innerHTML = html;
         } else {
             console.error('tbody element not found');
         }
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
-    });
+    }
+});
+
+        function previewImage(event, previewId) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const preview = document.getElementById(previewId);
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
  
-})

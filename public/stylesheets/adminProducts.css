@@ -411,3 +411,29 @@ grid-template-columns: 1fr;
 grid-template-columns: repeat(2, 1fr);
 }
 }
+.image-upload-box {
+    width: 100%; /* Ensures the box takes the full width available */
+    height: 150px; /* Set a fixed height for the box */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    overflow: hidden; /* Prevents the image from exceeding the box */
+    position: relative;
+}
+
+.preview-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ensures the image fits inside the box without stretching */
+    display: none;
+}
+
+.image-upload-box img {
+    display: none; /* Initially hide the image */
+}
+
+#photo1:checked ~ .preview-img, #photo2:checked ~ .preview-img, #photo3:checked ~ .preview-img {
+    display: block; /* Show the image preview once the file is selected */
+}

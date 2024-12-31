@@ -1,52 +1,77 @@
 const mongoose = require('mongoose');
+const { v4: uuidv4 } = require('uuid'); // Import UUID library
 
 // Define the Product schema
 const productSchema = new mongoose.Schema({
+  productId: {
+    type: String,
+    unique: true,
+    default: uuidv4, // Automatically generate a unique UUID
+    immutable: true, // Prevent updates to productId
+  },
   name: {
     type: String,
-    required: true,
-    trim: true,  // Remove extra spaces
+    required: [true, 'Product name is required'],
+    trim: true,
   },
   description: {
     type: String,
-    required: true,  // Ensure description is provided
+    required: [true, 'Product description is required'],
     trim: true,
   },
   price: {
     type: Number,
-    required: true,  // Ensure price is provided
-    min: [0, 'Price cannot be negative'],  // Prevent negative price
+    required: [true, 'Product price is required'],
+    min: [0, 'Price cannot be negative'],
   },
   category: {
     type: String,
-    required: true,  // Ensure category is provided
-    enum: ['Electronics', 'Fashion', 'Furniture', 'Beauty', 'Food'],  // Limit to specific categories
+    required: [true, 'Product category is required'],
+    enum: {
+      values: ['Electronics', 'Fashion', 'Furniture', 'Beauty', 'Food'],
+      message: '{VALUE} is not a valid category',
+    },
   },
   stock: {
     type: Number,
-    default: 0,  // Default stock is 0 if not provided
-    min: [0, 'Stock cannot be negative'],  // Prevent negative stock
+    default: 0,
+    min: [0, 'Stock cannot be negative'],
   },
-  images: [{
-    type: String,  // Array of image URLs
-    default: [],  // Default to an empty array if no images
-  }],
+  images: {
+    type: [String],
+    default: [],
+    validate: {
+      validator: function (value) {
+        return value.every((url) => /^https?:\/\/.+\.(jpg|jpeg|png|webp|gif)$/i.test(url));
+      },
+      message: 'One or more image URLs are invalid.',
+    },
+  },
   createdAt: {
     type: Date,
-    default: Date.now,  // Automatically set the creation date
+    default: Date.now,
+    immutable: true,
   },
   updatedAt: {
     type: Date,
-    default: Date.now,  // Automatically set the update date
+    default: Date.now,
   },
   status: {
     type: String,
-    enum: ['Available', 'Out of Stock', 'Discontinued'],  // Enum for product status
-    default: 'Available',  // Default status is 'Available'
+    enum: {
+      values: ['Available', 'Out of Stock', 'Discontinued'],
+      message: '{VALUE} is not a valid status',
+    },
+    default: 'Available',
   },
+});
+
+// Middleware to auto-update the updatedAt field on document save
+productSchema.pre('save', function (next) {
+  this.updatedAt = Date.now();
+  next();
 });
 
 const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product;
-

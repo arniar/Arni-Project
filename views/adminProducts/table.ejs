@@ -1,0 +1,23 @@
+
+    <% products.forEach((product) => { %>
+      <tr>
+        <td>
+          <img src="<%= product.images[0] %>" alt="<%= product.name %>" class="product-image">
+          <%= product.name %>
+        </td>
+        <td><%= product.productId %></td>
+        <td><%= product.category %></td>
+        <td><%= product.stock %></td>
+        <td>$<%= product.price %></td>
+        <td><%= product.description %></td>
+        <td><%= product.createdAt.getDate().toString().padStart(2, '0') + '-' + (product.createdAt.getMonth() + 1).toString().padStart(2, '0') + '-' + product.createdAt.getFullYear() %></td>
+        <td>
+          <div class="action-buttons">
+            <button class="action-btn edit-product-btn">✏️</button>
+            <button class="action-btn">👁️</button>
+            <button class="action-btn">🗑️</button>
+          </div>
+        </td>
+      </tr>
+    <% }) %>
+  
