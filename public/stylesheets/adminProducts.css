@@ -144,7 +144,7 @@ body {
 
 .product-table th,
 .product-table td {
-    padding: 12px;
+    padding: 10px;
     text-align: left;
     border-bottom: 1px solid var(--border-dark);
 }
@@ -200,6 +200,12 @@ body {
 .pagination button.active {
     background: var(--primary-color);
     border-color: var(--primary-color);
+}
+.name{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
 }
 
 /* Custom Scrollbar */

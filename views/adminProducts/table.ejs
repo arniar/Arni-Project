@@ -1,7 +1,7 @@
 
     <% products.forEach((product) => { %>
       <tr>
-        <td>
+        <td class="name">
           <img src="<%= product.images[0] %>" alt="<%= product.name %>" class="product-image">
           <%= product.name %>
         </td>
@@ -14,7 +14,6 @@
         <td>
           <div class="action-buttons">
             <button class="action-btn edit-product-btn">✏️</button>
-            <button class="action-btn">👁️</button>
             <button class="action-btn">🗑️</button>
           </div>
         </td>

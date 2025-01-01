@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupons Management - Admin Dashboard</title>
+    <link rel="stylesheet" href="/stylesheets/adminCoupons.css">
+</head>
+<body>
+    <button class="toggle-btn">☰</button>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="admin-info">
+                <div class="admin-avatar"></div>
+                <span>Admin</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#"><span class="icon">⊞</span> Dashboard</a>
+                <a href="#"><span class="icon">📦</span> Products</a>
+                <a href="#"><span class="icon">📑</span> Category</a>
+                <a href="#"><span class="icon">📋</span> Orders</a>
+                <a href="#" class="active"><span class="icon">🎫</span> Coupons</a>
+                <a href="#"><span class="icon">📊</span> Sales Report</a>
+                <a href="#"><span class="icon">👥</span> Users</a>
+                <a href="#"><span class="icon">🖼️</span> Banner</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="left-section">
+                    <h1 class="page-title">Coupons</h1>
+                </div>
+                <div class="tab-buttons">
+                    <button class="tab-btn active">All</button>
+                    <button class="tab-btn">Active</button>
+                    <button class="tab-btn">Expired</button>
+                </div>
+                <select class="date-select">
+                    <option>Select Date</option>
+                </select>
+                <button class="create-coupon-btn">+ Create Coupon</button>
+            </div>
+
+            <table class="coupons-table">
+                <thead>
+                    <tr>
+                        <th>Coupon Name</th>
+                        <th>Coupon Code</th>
+                        <th>Discount</th>
+                        <th>Min Amount</th>
+                        <th>Validity</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>NewYear Gift</td>
+                        <td>SOMERANDOMCODEHERE</td>
+                        <td>500</td>
+                        <td>₹2000</td>
+                        <td>24 Jun 2025</td>
+                        <td><span class="status active">Active</span></td>
+                        <td>20 Jan 2023</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn">✏️</button>
+                                <button class="action-btn">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Add more coupon rows as needed -->
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>→</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="javascripts/adminCoupons.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Categories - Admin Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/adminCategory.css">
+</head>
+<body>
+    <button class="toggle-btn">☰</button>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="admin-info">
+                <div class="admin-avatar"></div>
+                <span>Admin</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#"><span class="icon">⊞</span> Dashboard</a>
+                <a href="#"><span class="icon">📦</span> Products</a>
+                <a href="#" class="active"><span class="icon">📑</span> Category</a>
+                <a href="#"><span class="icon">📋</span> Orders</a>
+                <a href="#"><span class="icon">🎫</span> Coupons</a>
+                <a href="#"><span class="icon">📊</span> Sales Report</a>
+                <a href="#"><span class="icon">👥</span> Users</a>
+                <a href="#"><span class="icon">🖼️</span> Banner</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="header">
+                <h1 class="page-title">Men's Categories</h1>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." />
+                </div>
+                <button class="add-category-btn">+ Add Category</button>
+            </div>
+
+            <table class="categories-table">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" />
+                        </th>
+                        <th>Category Name</th>
+                        <th>Sold</th>
+                        <th>Stock</th>
+                        <th>Added</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div class="category-image"></div>
+                                <div>
+                                    <div>Shirts</div>
+                                    <small style="color: #9ca3af;">Every Shirts</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>10</td>
+                        <td>₹499</td>
+                        <td>24 Jan 2023</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn">✏️</button>
+                                <button class="action-btn">👁️</button>
+                                <button class="action-btn">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Repeat similar rows for other categories -->
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button>←</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+                <button>→</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="/javascripts/adminCategory.js"></script>
+</body>
+</html>

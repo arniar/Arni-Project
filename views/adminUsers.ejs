@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Details</title>
+    <link rel="stylesheet" href="/stylesheets/adminUsers.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="admin-section">
+                <div class="admin-avatar"></div>
+                <h2>Admin</h2>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="nav-item">Dashboard</a>
+                <a href="#" class="nav-item">Products</a>
+                <a href="#" class="nav-item">Category</a>
+                <a href="#" class="nav-item">Orders</a>
+                <a href="#" class="nav-item">Coupons</a>
+                <a href="#" class="nav-item">Sales Report</a>
+                <a href="#" class="nav-item active">Users</a>
+                <a href="#" class="nav-item">Banner</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">☰</button>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search...">
+                    </div>
+                </div>
+                <div class="date-range">
+                    <div class="date-input-group">
+                        <span class="date-label">From</span>
+                        <input type="date" class="date-picker">
+                    </div>
+                    <div class="date-input-group">
+                        <span class="date-label">To</span>
+                        <input type="date" class="date-picker">
+                    </div>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active">All</button>
+                <button class="tab">Active</button>
+                <button class="tab">Blocked</button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>SI No</th>
+                            <th>Customer Name</th>
+                            <th>Email</th>
+                            <th>Phone No</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>Added</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Customer Name</td>
+                            <td>Email</td>
+                            <td>123456789</td>
+                            <td>Address</td>
+                            <td><span class="status active">Active</span></td>
+                            <td>24 Jun 2023</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn">👁️</button>
+                                    <button class="action-btn block-user-btn" data-user-id="1">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+            <div class="pagination">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>→</button>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="blockUserModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Block User</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="blockReason">Please provide a reason for blocking this user:</label>
+                    <textarea id="blockReason" placeholder="Enter reason here..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn cancel-btn">Cancel</button>
+                <button class="modal-btn confirm-btn">Confirm Block</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascripts/adminUsers.js"></script>
+</body>
+</html>
