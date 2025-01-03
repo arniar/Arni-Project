@@ -6,88 +6,100 @@
     <title>Men's Categories - Admin Dashboard</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/adminCategory.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
 </head>
-<body>
+<body> 
+    <div class="loader-container ">
+        <svg class="loader active" viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="20"></circle>
+          <circle cx="25" cy="25" r="20"></circle>
+        </svg>
+      </div>
     <button class="toggle-btn">☰</button>
     <div class="container">
         <aside class="sidebar">
-            <div class="admin-info">
-                <div class="admin-avatar"></div>
-                <span>Admin</span>
+            <div class="logo">
+                <img src="/images/logo.png" alt="Logo">
             </div>
-            <nav class="nav-links">
-                <a href="#"><span class="icon">⊞</span> Dashboard</a>
-                <a href="#"><span class="icon">📦</span> Products</a>
-                <a href="#" class="active"><span class="icon">📑</span> Category</a>
-                <a href="#"><span class="icon">📋</span> Orders</a>
-                <a href="#"><span class="icon">🎫</span> Coupons</a>
-                <a href="#"><span class="icon">📊</span> Sales Report</a>
-                <a href="#"><span class="icon">👥</span> Users</a>
-                <a href="#"><span class="icon">🖼️</span> Banner</a>
-            </nav>
+            
+            <div class="sidebar-header">
+                <div class="admin-info">
+                    <div class="admin-avatar"></div>
+                    <span>Admin</span>
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="/admin/admin-products">Products</a></li>
+                <li><a href="#" class="active">Category</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">Coupons</a></li>
+                <li><a href="#">Sales Report</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="#">Banner</a></li>
+            </ul>
         </aside>
 
         <main class="main-content">
             <div class="header">
-                <h1 class="page-title">Men's Categories</h1>
+                <h1 class="page-title">Categories</h1>
                 <div class="search-bar">
-                    <input type="text" placeholder="Search..." />
+                    <input type="text" id="searchBar"  placeholder="Search..." />
                 </div>
                 <button class="add-category-btn">+ Add Category</button>
+                <div id="catModalOverlay" class="cat-modal__overlay active">
+                    <div class="cat-modal__container">
+                        <div class="cat-modal__header">
+                            <h2>Create Category</h2>
+                            <button class="cat-modal__close-btn" onclick="catModal.close()" id="catModalCloseBtn">✕</button>
+                        </div>
+                        <div class="cat-modal__content">
+                            <form id="catCreateForm" class="cat-form" action="/admin/adminCategory-create" method="POST">
+                                <div class="cat-form__group">
+                                    <label for="catNameInput" class="cat-form__label">Category Name</label>
+                                    <input type="text" id="catNameInput" name="name" class="cat-form__input" required>
+                                </div>
+                                <div class="cat-form__group">
+                                    <label for="catImageInput" class="cat-form__label">Category Image</label>
+                                    <input type="file" id="catImageInput"  class="cat-form__input" accept="image/*" required>
+                                </div>
+                                <div class="cat-crop__container">
+                                    <img id="catCropImage" class="cat-crop__image" src="" alt="Image for cropping">
+                                </div>
+                                <div class="cat-crop__preview" id="catCropPreview"></div>
+                                <input type="hidden" id="catCroppedData" name="croppedImage">
+                                <div class="cat-modal__btn-group">
+                                    <button type="button" class="cat-btn cat-btn--cancel" onclick="catModal.close()">Cancel</button>
+                                    <button type="submit" class="cat-btn cat-btn--submit">Create</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <table class="categories-table">
                 <thead>
                     <tr>
-                        <th>
-                            <input type="checkbox" />
-                        </th>
                         <th>Category Name</th>
-                        <th>Sold</th>
-                        <th>Stock</th>
-                        <th>Added</th>
+                        <th>Sub-Categories</th>
+                        <th>Status</th>
+                        <th>offer</th>
+                        <th>Add Offers</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="checkbox" /></td>
-                        <td>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <div class="category-image"></div>
-                                <div>
-                                    <div>Shirts</div>
-                                    <small style="color: #9ca3af;">Every Shirts</small>
-                                </div>
-                            </div>
-                        </td>
-                        <td>10</td>
-                        <td>₹499</td>
-                        <td>24 Jan 2023</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="action-btn">✏️</button>
-                                <button class="action-btn">👁️</button>
-                                <button class="action-btn">🗑️</button>
-                            </div>
-                        </td>
-                    </tr>
+                <tbody id="tbody">
+                   
+                   
+                    
                     <!-- Repeat similar rows for other categories -->
                 </tbody>
             </table>
-
-            <div class="pagination">
-                <button>←</button>
-                <button class="active">1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>→</button>
-            </div>
         </main>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
     <script src="/javascripts/adminCategory.js"></script>
 </body>
 </html>

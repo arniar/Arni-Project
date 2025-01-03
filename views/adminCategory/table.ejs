@@ -1,0 +1,44 @@
+<% mainCategories.forEach(category => { %>
+    <tr>
+      <td>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <img class="category-image" src="<%= category.image %>">
+          <div>
+            <div><%= category.mainCategoryName %></div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <% 
+          const subcategory = subcategoriesCount.find(obj => obj._id.toString() === category._id.toString());
+          const subcategoryCount = subcategory ? subcategory.count : 0;
+        %>
+        <%= subcategoryCount %>
+      </td>
+      <td>active</td>
+      <td><%= category.offerPercentage %> %</td>
+      <td>
+        <button class="add-offer">Add Offer</button>
+        <div class="add-offer-container active">
+            <button class="add-offer-close-btn">✖</button>
+            <h2 class="add-offer-title">Add Offer</h2>
+            <form class="add-offer-form" >
+              <div class="add-offer-group">
+                <label for="add-offer-input ">Offer</label>
+                <input type="number"  min="0" max="100" id="add-offer-input" class="" name="offer" placeholder="Enter offer details" required>
+                <p class="offerError"></p>
+                <input type="hidden" id="myHiddenInput" name="id" value="<%= category._id %>">
+
+              </div>
+             <button type="submit" class="add-offer-btn">Confirm</button>
+            </form>
+        </div>
+      </td>
+      <td>
+        <div class="action-buttons">
+          <button class="action-btn">✏️</button>
+          <button class="action-btn">🗑️</button>
+        </div>
+      </td>
+    </tr>
+<% }); %>
