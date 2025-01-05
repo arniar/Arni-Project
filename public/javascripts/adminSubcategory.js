@@ -26,7 +26,7 @@ window.addEventListener('resize', () => {
 // Fetch initial table data on DOM load
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('/admin//admin-category/table', {
+        const response = await fetch('/admin/subCategory/table', {
             method: 'POST',
         });
         if (!response.ok) {
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const formContent = { offer: offerValue, Id: id };
 
             try {
-                const response = await fetch('/admin/mainCategoryOffer', {
+                const response = await fetch('/admin/subCategory/offer', {
                     method: 'PATCH',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formContent)
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const searchValue = search.value;
 
         try {
-            const response = await fetch(`/admin/adminCategory-search?value=${encodeURIComponent(searchValue)}`, {
+            const response = await fetch(`/admin/subCategory/search?value=${encodeURIComponent(searchValue)}`, {
                 method: 'GET'
             });
 
@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 };
     
                 // Send a PATCH request to the backend
-                const response = await fetch('/admin/inactivate', {
+                const response = await fetch('/admin/subCategory/inactivate', {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 };
     
                 // Send a PATCH request to the backend
-                const response = await fetch('/admin/activate', {
+                const response = await fetch('/admin/subCategory/activate', {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
@@ -454,7 +454,7 @@ permanentDelete.forEach((btn) => {
             };
 
             // Send DELETE request
-            const response = await fetch('/admin/delete', {
+            const response = await fetch('/admin/subCategory/delete', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

@@ -52,11 +52,79 @@ router.post('/adminCategory-create', async (req, res) => {
 
     await mainCategory.create({ mainCategoryName:name,image:result.secure_url})
     
-   res.redirect('/admin-category')
+   res.redirect('/admin/admin-category')
   } catch (error) {
     console.error('Upload Error:', error);
     res.status(500).json({ error: 'Failed to upload image to Cloudinary' });
   }
 });
+
+router.post('/adminCategory-edit', async (req, res) => {
+  try {
+    console.log(req.body);
+    const { croppedImage, name, id } = req.body;
+
+    // Validate required fields
+    if (!id || !name) {
+      return res.status(400).json({ error: 'ID and Name are required fields.' });
+    }
+
+    // If no image is provided, only update the name
+    if (!croppedImage) {
+      console.log('No image provided, updating name only');
+      await mainCategory.updateOne({ _id: id }, { mainCategoryName: name });
+      return res.redirect('/admin/admin-category');
+    }
+
+    // Upload image to Cloudinary
+    const result = await cloudinary.uploader.upload(croppedImage, {
+      folder: 'adminCategory'
+    });
+
+    // Update both name and image
+    await mainCategory.updateOne(
+      { _id: id },
+      { mainCategoryName: name, image: result.secure_url }
+    );
+
+    res.redirect('/admin/admin-category');
+  } catch (error) {
+    console.error('Upload Error:', error);
+    res.status(500).json({ error: 'Failed to process request.' });
+  }
+});
+
+router.patch('/inactivate', async (req, res) => {
+  try{
+    const id = req.body.id;
+    await mainCategory.updateOne({_id:id},{status:"inactive"})
+    res.send("ok")
+  }
+  catch(error){
+    console.log(error)
+  }
+})
+
+router.patch('/activate', async (req, res) => {
+  try{
+    const id = req.body.id;
+    await mainCategory.updateOne({_id:id},{status:"active"})
+    res.send("ok")
+  }
+  catch(error){
+    console.log(error)
+  }
+})
+
+router.delete('/delete', async (req, res) => {
+  try{
+    const id = req.body.id;
+    await mainCategory.deleteOne({_id:id})
+    res.send("ok")
+  }
+  catch(error){
+    console.log(error)
+  }
+})
 
 module.exports = router;

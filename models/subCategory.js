@@ -12,6 +12,23 @@ const subCategorySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'MainCategory', // Reference to MainCategory
     required: true,
+  },
+  image: {
+    type: String,
+    default: '/default-image.png', // Provide a default image path
+    trim: true,
+  },
+  offerPercentage: {
+    type: Number,
+    default: 0, // Default offer percentage
+    min: 0,
+    max: 100,
+  },
+  status: {
+    type: String,
+    enum: ['active', 'inactive'], // Only allows 'active' or 'inactive'
+    default: 'active', // Default status is 'active'
+    trim: true,
   }
 });
 

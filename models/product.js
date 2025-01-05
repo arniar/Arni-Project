@@ -24,13 +24,10 @@ const productSchema = new mongoose.Schema({
     required: [true, 'Product price is required'],
     min: [0, 'Price cannot be negative'],
   },
-  category: {
-    type: String,
+  subCategory: {
+    type: mongoose.Schema.Types.ObjectId, // Reference to Category collection
+    ref: 'Category', // The name of the referenced model
     required: [true, 'Product category is required'],
-    enum: {
-      values: ['Electronics', 'Fashion', 'Furniture', 'Beauty', 'Food'],
-      message: '{VALUE} is not a valid category',
-    },
   },
   stock: {
     type: Number,
