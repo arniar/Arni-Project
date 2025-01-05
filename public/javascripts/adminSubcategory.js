@@ -232,8 +232,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     editBtn.forEach((btn) => {
         let editForm = btn.closest('td').querySelector('.edt-modal__overlay');
         btn.addEventListener('click', () => {
-            editForm.classList.remove('active'); // Toggle `active` instead of remove (usually logical)
-
+            editForm.classList.remove('active'); 
 
             const edtModal = {
                 cropper: null,

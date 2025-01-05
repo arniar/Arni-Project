@@ -10,6 +10,7 @@ var subCategories = require('../models/subCategory');
 
 /* GET home page. */
 router.get('/admin-category', async function(req, res, next) {
+    
     res.render('adminCategory'); // Pass as an object
 });
 

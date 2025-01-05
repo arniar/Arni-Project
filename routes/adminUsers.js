@@ -1,16 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var Product = require('../models/product');
+var User = require('../models/user');
 
 /* GET home page. */
-router.get('/admin-users', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('adminUsers');
 });
 
-router.post('/admin-users/table', async function (req, res, next) {
-    let products = await Product.find({});
-    console.log(products); // Verify fetched products in the console
-    res.render('adminUsers/table', { products }); // Pass as an object
+router.post('/table', async function (req, res, next) {
+    let users = await User.find();
+    res.render('/adminUsers/table',{users});
 });
 
 module.exports = router;

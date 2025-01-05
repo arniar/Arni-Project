@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var session = require('express-session')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -27,6 +28,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'your_secret_key', // Use environment variable
+  resave: false,           // Prevents unnecessary session resaving
+  saveUninitialized: false, // Don't save uninitialized sessions
+  cookie: {
+      secure: false,        // Set true if using HTTPS
+      httpOnly: true,       // Prevent client-side access to cookies
+      maxAge: 1000 * 60 * 15 // 15 minutes session expiry
+  }
+}));
+
 
 
 app.use('/admin', adminRouter);

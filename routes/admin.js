@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/',adminProductsRouter)
-router.use('/',adminUsersRouter)
+router.use('/users',adminUsersRouter)
 router.use('/',adminCategoryRouter)
 router.use('/subCategory',adminSubcategoryRouter)
 router.use('/',adminCouponsRouter)

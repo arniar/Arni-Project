@@ -26,7 +26,7 @@ window.addEventListener('resize', () => {
 // Fetch initial table data on DOM load
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('/admin//admin-category/table', {
+        const response = await fetch('/admin/admin-category/table', {
             method: 'POST',
         });
         if (!response.ok) {
@@ -232,8 +232,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     editBtn.forEach((btn) => {
         let editForm = btn.closest('td').querySelector('.edt-modal__overlay');
         btn.addEventListener('click', () => {
-            editForm.classList.remove('active'); // Toggle `active` instead of remove (usually logical)
-
+            editForm.classList.remove('active'); 
 
             const edtModal = {
                 cropper: null,
@@ -310,13 +309,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                         this.elements.form.submit();
                         this.close();
                     } catch (error) {
-                        alert('Error processing image: ' + error.message);
+                        
                     }
                 }
             };
         
             edtModal.init();
         });
+  
     });
     let editClose = document.querySelectorAll('.edt-modal__close-btn')
     editClose.forEach((btn) => {
@@ -475,5 +475,31 @@ permanentDelete.forEach((btn) => {
         }
     });
 });
+
+// let tr = document.querySelectorAll('.tr');
+
+// tr.forEach((row) => {
+//     let hiddenInput = row.querySelector('#myHiddenInput'); // Select the hidden input inside the row
+    
+//     let id = hiddenInput ? hiddenInput.value : null; // Get the value safely
+    
+//     row.addEventListener('click', async () => {
+//         try {
+//             const response = await fetch(`/admin/subCategory?id=${id}`, {
+//                 method: 'GET'
+//             });
+
+//             if (response.ok) {
+//                 const data = await response.json();
+//                 console.log('Response:', data);
+//             } else {
+//                 console.error('Failed to fetch subCategory:', response.statusText);
+//             }
+//         } catch (error) {
+//             console.error('Error fetching subCategory:', error);
+//         }
+//     });
+// });
+
 
 });

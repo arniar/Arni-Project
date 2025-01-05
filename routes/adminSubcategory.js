@@ -11,19 +11,19 @@ var productDB = require('../models/product');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-    let mainCategories = await mainCategory.find()
+    req.session.mainCategoryId = req.query.id;
+    console.log("id:",req.query.id)
+    let mainCategories = await mainCategory.find({});
     res.render('adminSubcategory',{mainCategories}); // Pass as an object
 });
 
 router.post('/table', async function (req, res, next) {
     try {
-      let subCategories = await subCategory.find();
+      let subCategories = await subCategory.find({mainCategory:req.session.mainCategoryId});
       let mainCategories = await mainCategory.find({}, '_id mainCategoryName');
       let products = await productDB.aggregate([
         { $group: { _id: "$subCategory", count: { $sum: 1 } } }
       ]).exec();
-  
-      console.log(subCategories, mainCategories, products);
       res.render('adminSubcategory/table', { mainCategories, subCategories, products });
     } catch (error) {
       console.error("Error:", error);
@@ -41,7 +41,7 @@ router.post('/table', async function (req, res, next) {
 
 router.get('/search', async function (req, res, next) {
 
-  let subCategories = await subCategory.find({subCategoryName:{$regex:`${req.query.value}`, $options: 'i'}});
+  let subCategories = await subCategory.find({mainCategory:req.session.mainCategoryId,subCategoryName:{$regex:`${req.query.value}`, $options: 'i'}});
       let mainCategories = await mainCategory.find({}, '_id mainCategoryName');
       let products = await productDB.aggregate([
         { $group: { _id: "$subCategory", count: { $sum: 1 } } }
@@ -65,9 +65,9 @@ router.post('/create', async (req, res) => {
       folder: 'adminCategory' // Optional: specify a folder in Cloudinary
     });
 
-    await subCategory.create({ subCategoryName:name,image:result.secure_url})
+    await subCategory.create({ subCategoryName:name,image:result.secure_url,mainCategory:req.session.mainCategoryId})
     
-   res.redirect('/admin/admin-category')
+   res.redirect(`/admin/subCategory?id=${req.session.mainCategoryId}`)
   } catch (error) {
     console.error('Upload Error:', error);
     res.status(500).json({ error: 'Failed to upload image to Cloudinary' });
@@ -88,7 +88,7 @@ router.post('/edit', async (req, res) => {
     if (!croppedImage) {
       console.log('No image provided, updating name only');
       await subCategory.updateOne({ _id: id }, { subCategoryName: name });
-      return res.redirect('/admin/subCategory');
+      return res.redirect(`/admin/subCategory?id=${req.session.mainCategoryId}`);
     }
 
     // Upload image to Cloudinary
