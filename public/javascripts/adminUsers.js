@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('/admin/admin-users/table', {
+        const response = await fetch('/admin/users/table', {
             method: 'POST',
         });
         if (!response.ok) {

@@ -1,18 +1,16 @@
-<% users.forEach((user)=>{%>
+<% users.forEach((user) => { %>
     <tr>
-        <td>Customer Name</td>
-        <td>Email</td>
-        <td>123456789</td>
-        <td>Address</td>
-        <td><span class="status active">Active</span></td>
-        <td>24 Jun 2023</td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone %></td>
+        <td><%= user.address %></td>
+        <td><span class="status active"><%= user.status %></span></td>
+        <td><%= new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) %></td>
         <td>
             <div class="action-buttons">
                 <button class="action-btn">👁️</button>
-                <button class="action-btn block-user-btn" data-user-id="1">🗑️</button>
+                <button class="action-btn block-user-btn" data-user-id="<%= user.id %>">🗑️</button>
             </div>
         </td>
     </tr>
-%>})
-
-
+<% }); %>

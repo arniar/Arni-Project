@@ -35,29 +35,19 @@
                         <input type="text" placeholder="Search...">
                     </div>
                 </div>
-                <div class="date-range">
-                    <div class="date-input-group">
-                        <span class="date-label">From</span>
-                        <input type="date" class="date-picker">
-                    </div>
-                    <div class="date-input-group">
-                        <span class="date-label">To</span>
-                        <input type="date" class="date-picker">
-                    </div>
-                </div>
+                
             </div>
 
             <div class="tabs">
                 <button class="tab active">All</button>
-                <button class="tab">Active</button>
-                <button class="tab">Blocked</button>
+                <a href="/admin/users?condition=Active"><button class="tab">Active</button></a>
+                <a href="/admin/users?condition=Suspended"></a><button class="tab">Suspended</button></a>
             </div>
 
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>SI No</th>
                             <th>Customer Name</th>
                             <th>Email</th>
                             <th>Phone No</th>
@@ -68,18 +58,13 @@
                         </tr>
                     </thead>
                     <tbody id="tbody">
-                       
+                        
+                        
                     </tbody>
                 </table>
             </div>
         </main>
     </div>
-            <div class="pagination">
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>→</button>
-            </div>
         </main>
     </div>
 
@@ -102,6 +87,6 @@
         </div>
     </div>
 
-    <script src="javascripts/adminUsers.js"></script>
+    <script src="/javascripts/adminUsers.js"></script>
 </body>
 </html>

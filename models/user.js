@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const { v4: uuidv4 } = require('uuid'); // Import UUID library
 
 
  // Define the User schema
@@ -9,12 +8,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-  },
-  userId: {
-    type: String,
-    unique: true,
-    default: uuidv4, // Automatically generate a unique UUID
-    immutable: true, // Prevent updates to productId
   },
   email: {
     type: String,
