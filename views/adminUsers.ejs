@@ -39,9 +39,11 @@
             </div>
 
             <div class="tabs">
-                <button class="tab active">All</button>
+                <a href="/admin/users?condition=All"><button class="tab active">All</button></a>
                 <a href="/admin/users?condition=Active"><button class="tab">Active</button></a>
-                <a href="/admin/users?condition=Suspended"></a><button class="tab">Suspended</button></a>
+                <a href="/admin/users?condition=Inactive"><button class="tab">Inactive</button></a>
+                <a href="/admin/users?condition=Suspended"><button class="tab">Suspended</button></a>
+                
             </div>
 
             <div class="table-container">
@@ -66,25 +68,6 @@
         </main>
     </div>
         </main>
-    </div>
-
-    <div class="modal-overlay" id="blockUserModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Block User</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="blockReason">Please provide a reason for blocking this user:</label>
-                    <textarea id="blockReason" placeholder="Enter reason here..."></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-btn cancel-btn">Cancel</button>
-                <button class="modal-btn confirm-btn">Confirm Block</button>
-            </div>
-        </div>
     </div>
 
     <script src="/javascripts/adminUsers.js"></script>

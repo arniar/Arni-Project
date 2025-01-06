@@ -17,4 +17,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Fetch error:', error);
     }
+
+    let blockBtn = document.querySelectorAll('.block-user-btn');
+
+    blockBtn.forEach((btn)=>{
+        btn.addEventListener('click', async (e) => {
+           let form = btn.closest('tr').querySelector('.modal-overlay')
+           form.classList.remove('hide')
+        })
+    })
+
+    let closeBtn = document.querySelectorAll('.close-modal')
+    closeBtn.forEach((btn)=>{
+        btn.addEventListener('click', async (e) => {
+            let form = btn.closest('tr').querySelector('.modal-overlay')
+            form.classList.add('hide')
+         })
+    })
+
+    let cancelBtn = document.querySelectorAll('.cancel-btn')
+    cancelBtn.forEach((btn)=>{
+        btn.addEventListener('click', async (e) => {
+            let form = btn.closest('tr').querySelector('.modal-overlay')
+            form.classList.add('hide')
+         })
+    })
 });

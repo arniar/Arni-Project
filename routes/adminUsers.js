@@ -4,7 +4,7 @@ var User = require('../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  req.session.condition = req.query.condition
+  req.session.condition = req.query.condition||"All"
   console.log(req.session.condition)
   res.render('adminUsers');
 });
@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 router.post('/table', async function (req, res, next) {
   try {
 
-    if(!req.session.condition){
+    if(req.session.condition=="All"){
       let users = await User.find();
       return res.render('adminUsers/table', { users });
     }

@@ -8,8 +8,28 @@
         <td><%= new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) %></td>
         <td>
             <div class="action-buttons">
-                <button class="action-btn">👁️</button>
-                <button class="action-btn block-user-btn" data-user-id="<%= user.id %>">🗑️</button>
+                <button class="action-btn block-user-btn" data-user-id="<%= user.id %>">🚷</button>
+                <div class="modal-overlay hide" id="blockUserModal">
+                    <div class="modal">
+                        <form id="blockUserForm" action="" method="post">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Block User</h3>
+                                <button type="button" class="close-modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="blockReason">Please provide a reason for blocking this user:</label>
+                                    <textarea id="blockReason" name="blockReason" placeholder="Enter reason here..." required></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="modal-btn cancel-btn">Cancel</button>
+                                <button type="submit" class="modal-btn confirm-btn">Confirm Block</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
             </div>
         </td>
     </tr>
